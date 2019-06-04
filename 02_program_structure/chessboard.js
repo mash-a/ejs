@@ -14,23 +14,27 @@ Passing this string to console.log should show something like this:
 When you have a program that generates this pattern, define a binding size = 8 and change the program so that it works for any size, outputting a grid of the given width and height. 
 */
 
-const chessBoard = (n = 8) => {
+const chessboard = (n = 8) => {
   let board = "";
-  let strLen = Math.pow(n, 2);
-  let lastChar = " ";
   let nextChar = "#";
-  //the last char becomes the odd
-  let currentLine;
+  let lastChar = " ";
+  let line = "";
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      if(j % 2 === 0) {
-        currentLine += lastChar;
+      if (j % 2 === 0) {
+        line += nextChar;
       } else {
-        currentLine += nextChar;
+        line += lastChar;
       }
     }
-    lastChar = 
-    board += currentLine;
+    nextChar = nextChar === "#" ? " " : "#";
+    lastChar = lastChar === "#" ? " " : "#";
+    if (i < n - 1) {
+      board += line + "\n";
+    } else {
+      board += line;
+    }
+    line = "";
   }
-  return board;
+  console.log(board);
 };
